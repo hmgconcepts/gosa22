@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Feature Guide • God of Seed Academy</title>
+<meta name="description" content="God of Seed Academy — Feature Guide. Free school management platform by HMG Concepts.">
+<meta name="keywords" content="God of Seed Academy, school management, GOSA, HMG Concepts">
+<meta name="theme-color" content="#0506ae">
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<meta property="og:title" content="Feature Guide • God of Seed Academy">
+<meta property="og:description" content="God of Seed Academy — Free school management by HMG Concepts">
+<meta property="og:image" content="assets/img/logo.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+/* === Critical app-shell CSS (inlined as a safety net) ===
+   Final UI/UX repair: stable, professional navigation for every layout.
+   Prevents scattered icons/labels, fixes unsupported layout IDs, and keeps
+   large module lists readable on desktop and mobile. */
+:root{--primary:#0506ae;--primary-dark:#0506ae;--primary-light:#964eec;--accent:#964eec;--gradient:linear-gradient(135deg,#0506ae,#964eec);--gradient-dark:linear-gradient(135deg,#0506ae,#964eec);--font:'Plus Jakarta Sans',system-ui,sans-serif;--sc-primary:#0506ae;--sc-accent:#964eec}
+body{font-family:var(--font)!important;background:#f8fafc}
+.app-layout{display:flex;min-height:100vh;background:#f8fafc;color:#0f172a}
+.app-sidebar{width:286px;flex-shrink:0;background:rgba(255,255,255,.98);border-right:1px solid #e2e8f0;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow:hidden;z-index:40;box-shadow:0 10px 25px rgba(15,23,42,.04)}
+.app-brand{display:flex;align-items:center;gap:12px;padding:18px 16px;border-bottom:1px solid #e2e8f0;min-height:78px}
+.app-brand img{width:44px;height:44px;border-radius:12px;object-fit:contain;flex-shrink:0;background:#f8fafc;border:1px solid #e2e8f0}
+.app-brand strong{display:block;font-size:.98rem;font-weight:900;color:#0f172a;line-height:1.2;max-width:190px;white-space:normal}
+.app-nav{display:flex;flex-direction:column;gap:4px;padding:12px 10px 18px;flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
+.app-nav a{display:grid;grid-template-columns:32px minmax(0,1fr);align-items:center;gap:10px;min-height:42px;padding:8px 10px;border-radius:12px;color:#475569;text-decoration:none;font-size:.875rem;font-weight:700;line-height:1.2;white-space:normal;word-break:normal;transition:background .18s ease,color .18s ease,transform .18s ease}
+.app-nav a:hover{background:#f1f5f9;color:var(--primary);transform:translateX(2px)}
+.app-nav a.active{background:var(--gradient);color:#fff;box-shadow:0 8px 20px rgba(79,70,229,.22)}
+body:not([data-role-ready="1"]) .app-nav a[data-role-allow]{display:none!important}.app-nav a[style*="display: none"]{display:none!important}
+.app-nav a.nav-locked{opacity:.62}.app-nav a.nav-locked .app-nav-icon{filter:grayscale(.35)}.app-nav a.nav-locked::after{content:'🔒';font-size:.72rem;opacity:.65;justify-self:end}.app-nav a.nav-locked.active{opacity:1}
+.app-nav-icon{width:32px;height:32px;min-width:32px;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem;line-height:1;border-radius:10px;background:rgba(79,70,229,.09);color:var(--primary);flex-shrink:0;overflow:hidden}
+.app-nav a.active .app-nav-icon{background:rgba(255,255,255,.22);color:#fff}
+.app-nav a span:last-child{overflow:hidden;text-overflow:ellipsis;display:block}
+.app-main{flex:1;min-width:0;display:flex;flex-direction:column}
+.app-topbar{display:flex;align-items:center;gap:14px;padding:13px 22px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:30;box-shadow:0 4px 18px rgba(15,23,42,.035)}
+.app-page-title{font-size:1.2rem;font-weight:900;color:#0f172a;margin:0;letter-spacing:-.01em}
+.app-content{padding:24px;flex:1;max-width:1400px;width:100%;margin:0 auto}
+.card{border-radius:18px!important;border:1px solid #e2e8f0!important;box-shadow:0 8px 24px rgba(15,23,42,.06)!important}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:18px}.stat-card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:18px;box-shadow:0 6px 18px rgba(15,23,42,.05)}.stat-value{font-size:1.8rem;font-weight:900;color:var(--primary)}.stat-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:#64748b;font-weight:800}
+/* Stable variants for all builder layout choices. Unsupported visual ideas are
+   expressed as professional variations, not broken experimental layouts. */
+.app-layout.topnav,.app-layout.cardhub,.app-layout.mega-menu,.app-layout.tabbed,.app-layout.dashboard-pro{flex-direction:column}
+.app-layout.topnav .app-sidebar,.app-layout.cardhub .app-sidebar,.app-layout.mega-menu .app-sidebar,.app-layout.tabbed .app-sidebar,.app-layout.dashboard-pro .app-sidebar{width:100%;height:auto;max-height:210px;position:sticky;top:0;flex-direction:row;align-items:stretch;overflow:hidden;border-right:none;border-bottom:1px solid #e2e8f0}
+.app-layout.topnav .app-brand,.app-layout.cardhub .app-brand,.app-layout.mega-menu .app-brand,.app-layout.tabbed .app-brand,.app-layout.dashboard-pro .app-brand{width:260px;min-width:260px;border-bottom:none;border-right:1px solid #e2e8f0}
+.app-layout.topnav .app-nav,.app-layout.cardhub .app-nav,.app-layout.mega-menu .app-nav,.app-layout.tabbed .app-nav,.app-layout.dashboard-pro .app-nav{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(116px,150px);overflow-x:auto;overflow-y:hidden;padding:10px;align-items:center}
+.app-layout.topnav .app-nav a,.app-layout.cardhub .app-nav a,.app-layout.mega-menu .app-nav a,.app-layout.tabbed .app-nav a,.app-layout.dashboard-pro .app-nav a{grid-template-columns:1fr;text-align:center;justify-items:center;gap:4px;min-height:68px;padding:8px 10px;font-size:.75rem}
+.app-layout.topnav .app-nav-icon,.app-layout.cardhub .app-nav-icon,.app-layout.mega-menu .app-nav-icon,.app-layout.tabbed .app-nav-icon,.app-layout.dashboard-pro .app-nav-icon{margin:auto}
+.app-layout.compact .app-sidebar,.app-layout.dock .app-sidebar{width:224px}.app-layout.compact .app-nav a,.app-layout.dock .app-nav a{font-size:.8rem;grid-template-columns:28px minmax(0,1fr)}.app-layout.compact .app-nav-icon,.app-layout.dock .app-nav-icon{width:28px;height:28px;min-width:28px}
+.app-layout.expanded .app-sidebar{width:330px}.app-layout.minimalist .app-sidebar{box-shadow:none}.app-layout.floating .app-sidebar{margin:14px;border-radius:22px;height:calc(100vh - 28px);border:1px solid #e2e8f0}.app-layout.split-view .app-content,.app-layout.grid-master .app-content,.app-layout.masonry .app-content{max-width:1500px}
+@media(max-width:900px){.app-sidebar,.app-layout.floating .app-sidebar{position:fixed!important;left:0;top:0;bottom:0;width:min(86vw,310px)!important;height:100vh!important;margin:0!important;border-radius:0!important;transform:translateX(-100%);transition:transform .25s ease;box-shadow:0 20px 40px rgba(0,0,0,.22);z-index:100}.app-sidebar.open{transform:translateX(0)}.app-layout.topnav .app-sidebar,.app-layout.cardhub .app-sidebar,.app-layout.mega-menu .app-sidebar,.app-layout.tabbed .app-sidebar,.app-layout.dashboard-pro .app-sidebar{flex-direction:column;align-items:stretch}.app-layout.topnav .app-brand,.app-layout.cardhub .app-brand,.app-layout.mega-menu .app-brand,.app-layout.tabbed .app-brand,.app-layout.dashboard-pro .app-brand{width:auto;min-width:0;border-right:none;border-bottom:1px solid #e2e8f0}.app-layout.topnav .app-nav,.app-layout.cardhub .app-nav,.app-layout.mega-menu .app-nav,.app-layout.tabbed .app-nav,.app-layout.dashboard-pro .app-nav{display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden}.app-layout.topnav .app-nav a,.app-layout.cardhub .app-nav a,.app-layout.mega-menu .app-nav a,.app-layout.tabbed .app-nav a,.app-layout.dashboard-pro .app-nav a{display:grid;grid-template-columns:32px minmax(0,1fr);justify-items:stretch;text-align:left;min-height:42px;font-size:.875rem}.app-content{padding:16px}.app-topbar{padding:12px 14px;gap:10px}.app-topbar .mobile-toggle{display:inline-flex;align-items:center;justify-content:center;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:10px;width:40px;height:40px;font-size:1.2rem;cursor:pointer}.user-chip{max-width:150px;overflow:hidden}.user-chip strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+@media(min-width:901px){.app-topbar .mobile-toggle{display:none}}
+</style>
+</head>
+<body data-theme="theme15" data-school="God of Seed Academy" data-font="plusjakarta">
+
+<div id="notif-bell" class="notif-bell" title="Notifications" data-chatbot>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+  <span id="notif-badge" class="notif-badge" style="display:none">0</span>
+  <div id="notif-dropdown" class="notif-dropdown">
+    <div style="padding:16px 20px;border-bottom:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:center">
+      <strong style="color:var(--dark)">Notifications</strong>
+      <button class="btn btn-sm btn-outline" onclick="Notifications.markAllRead()">Mark all read</button>
+    </div>
+    <div id="notif-list"><div class="toast-msg" style="padding:24px;text-align:center">Loading…</div></div>
+  </div>
+</div>
+
+<div id="pwa-install-banner" class="pwa-install">
+  <div class="pwa-install-header">
+    <img src="assets/img/logo.png" alt="" class="pwa-install-icon">
+    <div style="flex:1">
+      <div class="pwa-install-title">📲 Install School Connect</div>
+      <div class="pwa-install-msg">Get push notifications for messages, broadcasts, polls and result slips — even when the app is closed.</div>
+    </div>
+    <button class="modal-close" data-pwa-action="dismiss" title="Dismiss">×</button>
+  </div>
+  <div class="pwa-install-actions">
+    <button class="btn btn-outline btn-sm" data-pwa-action="never">Not now</button>
+    <button class="btn btn-primary btn-sm" data-pwa-action="install">Install App</button>
+  </div>
+</div>
+
+<div id="toast-container" class="toast-container"></div>
+<div id="modal-backdrop" class="modal-backdrop" onclick="if(event.target===this)closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <h2 id="modal-title">Modal</h2>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div id="modal-body" class="modal-body"></div>
+    <div id="modal-footer" class="modal-footer"></div>
+  </div>
+</div>
+<div class="app-layout sidebar" data-require-role="any">
+  <aside class="app-sidebar" id="app-sidebar">
+      <div class="app-brand">
+        <img src="assets/img/logo.png" alt="God of Seed Academy" style="object-fit:contain" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{textContent:('G'),style:'width:40px;height:40px;border-radius:10px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900'}))">
+        <div>
+          <strong>God of Seed Academy</strong>
+          <div style="font-size:0.7rem;color:var(--gray-500)">GOSA</div>
+        </div>
+      </div>
+      <nav class="app-nav">
+        <a href="dashboard.html" data-module-id="dashboard" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🏠</span>
+          <span>Dashboard</span>
+        </a><a href="academic_setup.html" data-module-id="academic_setup" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">⚙️</span>
+          <span>Academic Setup</span>
+        </a><a href="students.html" data-module-id="students" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">👨‍🎓</span>
+          <span>Students</span>
+        </a><a href="staff.html" data-module-id="staff" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">👨‍🏫</span>
+          <span>Staff</span>
+        </a><a href="classes.html" data-module-id="classes" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">📚</span>
+          <span>Classes</span>
+        </a><a href="subjects.html" data-module-id="subjects" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">◦</span>
+          <span>Subjects</span>
+        </a><a href="attendance.html" data-module-id="attendance" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">📋</span>
+          <span>Attendance</span>
+        </a><a href="cbt-prompts.html" data-module-id="cbt-prompts" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">🧩</span>
+          <span>AI Question Prompts</span>
+        </a><a href="entrance.html" data-module-id="entrance" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">🎯</span>
+          <span>Entrance &amp; Assessments</span>
+        </a><a href="results.html" data-module-id="results" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">📊</span>
+          <span>Results</span>
+        </a><a href="flyer.html" data-module-id="flyer" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">📰</span>
+          <span>Flyer</span>
+        </a><a href="report-cards.html" data-module-id="report-cards" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🧾</span>
+          <span>Report Cards</span>
+        </a><a href="analytics.html" data-module-id="analytics" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">📊</span>
+          <span>Analytics</span>
+        </a><a href="admin-data.html" data-module-id="admin-data" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">🗄️</span>
+          <span>Admin Data</span>
+        </a><a href="academic_records.html" data-module-id="academic_records" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">📄</span>
+          <span>Records</span>
+        </a><a href="storage.html" data-module-id="storage" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">🗄️</span>
+          <span>Storage Manager</span>
+        </a><a href="approvals.html" data-module-id="approvals" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">✅</span>
+          <span>Approvals</span>
+        </a><a href="timetable-generator.html" data-module-id="timetable-generator" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">🗓️</span>
+          <span>Auto-Timetable</span>
+        </a><a href="checkin.html" data-module-id="checkin" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher student" class="">
+          <span class="app-nav-icon">📲</span>
+          <span>QR Check-in</span>
+        </a><a href="diary.html" data-module-id="diary" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">📔</span>
+          <span>Diary</span>
+        </a><a href="surveys.html" data-module-id="surveys" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🗒️</span>
+          <span>Surveys</span>
+        </a><a href="menu.html" data-module-id="menu" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🍽️</span>
+          <span>Menu</span>
+        </a><a href="settings.html" data-module-id="settings" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">⚙️</span>
+          <span>Settings (2FA · Language · A11y)</span>
+        </a><a href="fees.html" data-module-id="fees" data-role-allow="super_admin admin principal proprietor head_teacher bursar parent" class="">
+          <span class="app-nav-icon">💰</span>
+          <span>Fees</span>
+        </a><a href="timetable.html" data-module-id="timetable" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🗓️</span>
+          <span>Timetable</span>
+        </a><a href="cbt.html" data-module-id="cbt" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">💻</span>
+          <span>CBT</span>
+        </a><a href="sow.html" data-module-id="sow" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">📋</span>
+          <span>Scheme</span>
+        </a><a href="messages.html" data-module-id="messages" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">📱</span>
+          <span>Messaging</span>
+        </a><a href="announcements.html" data-module-id="announcements" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">📢</span>
+          <span>Announcements</span>
+        </a><a href="events.html" data-module-id="events" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🎭</span>
+          <span>Events</span>
+        </a><a href="gallery.html" data-module-id="gallery" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🖼️</span>
+          <span>Gallery</span>
+        </a><a href="library.html" data-module-id="library" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">📖</span>
+          <span>Library</span>
+        </a><a href="digital_library.html" data-module-id="digital_library" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">📚</span>
+          <span>Digital Library</span>
+        </a><a href="assignments.html" data-module-id="assignments" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">📝</span>
+          <span>Assignments</span>
+        </a><a href="parents.html" data-module-id="parents" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">👨‍👩‍👧</span>
+          <span>Parent–Child</span>
+        </a><a href="idcards.html" data-module-id="idcards" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🪪</span>
+          <span>ID Cards</span>
+        </a><a href="directory.html" data-module-id="directory" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">🔍</span>
+          <span>Directory</span>
+        </a><a href="departments.html" data-module-id="departments" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">🏢</span>
+          <span>Departments</span>
+        </a><a href="broadcast.html" data-module-id="broadcast" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">📨</span>
+          <span>Result Broadcast</span>
+        </a><a href="complaints.html" data-module-id="complaints" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">📨</span>
+          <span>Complaints</span>
+        </a><a href="leave.html" data-module-id="leave" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">🏖️</span>
+          <span>Leave</span>
+        </a><a href="visitors.html" data-module-id="visitors" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">🚪</span>
+          <span>Visitors</span>
+        </a><a href="hostel.html" data-module-id="hostel" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🛏️</span>
+          <span>Hostel</span>
+        </a><a href="transport.html" data-module-id="transport" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🚌</span>
+          <span>Transport</span>
+        </a><a href="alumni.html" data-module-id="alumni" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">🤝</span>
+          <span>Alumni</span>
+        </a><a href="certificates.html" data-module-id="certificates" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher student" class="">
+          <span class="app-nav-icon">📜</span>
+          <span>Certificates</span>
+        </a><a href="admissions.html" data-module-id="admissions" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">📝</span>
+          <span>Admissions</span>
+        </a><a href="promotion.html" data-module-id="promotion" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">🎓</span>
+          <span>Promotion</span>
+        </a><a href="finance.html" data-module-id="finance" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">💵</span>
+          <span>Finance</span>
+        </a><a href="inventory.html" data-module-id="inventory" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">📦</span>
+          <span>Inventory</span>
+        </a><a href="hr.html" data-module-id="hr" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">💼</span>
+          <span>HR &amp; Payroll</span>
+        </a><a href="payroll.html" data-module-id="payroll" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">🧾</span>
+          <span>Payroll Register</span>
+        </a><a href="staff_loans.html" data-module-id="staff_loans" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">🏦</span>
+          <span>Staff Loans &amp; Advances</span>
+        </a><a href="staff_bonus.html" data-module-id="staff_bonus" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">🎁</span>
+          <span>Staff Bonuses</span>
+        </a><a href="appraisals.html" data-module-id="appraisals" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">⭐</span>
+          <span>Staff Appraisals</span>
+        </a><a href="rubrics.html" data-module-id="rubrics" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">📐</span>
+          <span>Grading Rubrics</span>
+        </a><a href="transcripts.html" data-module-id="transcripts" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🎓</span>
+          <span>Academic Transcripts</span>
+        </a><a href="transfer_cert.html" data-module-id="transfer_cert" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">📄</span>
+          <span>Transfer Certificates</span>
+        </a><a href="counselling.html" data-module-id="counselling" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">💬</span>
+          <span>Counselling &amp; Wellbeing</span>
+        </a><a href="voting.html" data-module-id="voting" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🗳️</span>
+          <span>Voting</span>
+        </a><a href="health.html" data-module-id="health" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent" class="">
+          <span class="app-nav-icon">🩺</span>
+          <span>Health</span>
+        </a><a href="conduct.html" data-module-id="conduct" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent" class="">
+          <span class="app-nav-icon">⚖️</span>
+          <span>Conduct</span>
+        </a><a href="eresources.html" data-module-id="eresources" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">📁</span>
+          <span>E-Resources</span>
+        </a><a href="birthdays.html" data-module-id="birthdays" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">🎂</span>
+          <span>Birthdays</span>
+        </a><a href="lms.html" data-module-id="lms" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher student" class="">
+          <span class="app-nav-icon">🎓</span>
+          <span>LMS</span>
+        </a><a href="gamification.html" data-module-id="gamification" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher student" class="">
+          <span class="app-nav-icon">🏅</span>
+          <span>Gamification</span>
+        </a><a href="cafeteria.html" data-module-id="cafeteria" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🍽️</span>
+          <span>Cafeteria</span>
+        </a><a href="financial_aid.html" data-module-id="financial_aid" data-role-allow="super_admin admin principal proprietor head_teacher bursar parent" class="">
+          <span class="app-nav-icon">🎗️</span>
+          <span>Financial Aid</span>
+        </a><a href="front_desk.html" data-module-id="front_desk" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">🛎️</span>
+          <span>Front Desk</span>
+        </a><a href="career_counseling.html" data-module-id="career_counseling" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher student" class="">
+          <span class="app-nav-icon">🧭</span>
+          <span>Career</span>
+        </a><a href="document_builder.html" data-module-id="document_builder" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">🧾</span>
+          <span>Documents</span>
+        </a><a href="fleet_tracking.html" data-module-id="fleet_tracking" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">🛰️</span>
+          <span>Fleet</span>
+        </a><a href="facility_booking.html" data-module-id="facility_booking" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">🏟️</span>
+          <span>Facilities</span>
+        </a><a href="compliance.html" data-module-id="compliance" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">✅</span>
+          <span>Compliance</span>
+        </a><a href="developer.html" data-module-id="developer" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">👨‍💻</span>
+          <span>About the Developer</span>
+        </a><a href="lesson_plans.html" data-module-id="lesson_plans" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">🗒️</span>
+          <span>Lesson Plans</span>
+        </a><a href="substitutions.html" data-module-id="substitutions" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">🔁</span>
+          <span>Substitutions</span>
+        </a><a href="behaviour.html" data-module-id="behaviour" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🏅</span>
+          <span>Behaviour</span>
+        </a><a href="support_plans.html" data-module-id="support_plans" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🧩</span>
+          <span>Support Plans</span>
+        </a><a href="activity_log.html" data-module-id="activity_log" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">🧮</span>
+          <span>Activity Log</span>
+        </a><a href="helpdesk.html" data-module-id="helpdesk" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🆘</span>
+          <span>Help Desk</span>
+        </a><a href="lost_found.html" data-module-id="lost_found" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🔍</span>
+          <span>Lost &amp; Found</span>
+        </a><a href="school_calendar.html" data-module-id="school_calendar" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">📅</span>
+          <span>Calendar</span>
+        </a><a href="reports.html" data-module-id="reports" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher" class="">
+          <span class="app-nav-icon">📈</span>
+          <span>Reports</span>
+        </a><a href="book_request.html" data-module-id="book_request" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher student" class="">
+          <span class="app-nav-icon">📖</span>
+          <span>Book Request</span>
+        </a><a href="donations.html" data-module-id="donations" data-role-allow="super_admin admin principal proprietor head_teacher bursar parent" class="">
+          <span class="app-nav-icon">💝</span>
+          <span>Donations</span>
+        </a><a href="payments_online.html" data-module-id="payments_online" data-role-allow="super_admin admin principal proprietor head_teacher bursar parent" class="">
+          <span class="app-nav-icon">💳</span>
+          <span>Online Pay</span>
+        </a><a href="parent_meeting.html" data-module-id="parent_meeting" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent" class="">
+          <span class="app-nav-icon">👥</span>
+          <span>PTA Meeting</span>
+        </a><a href="inbox.html" data-module-id="inbox" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">💬</span>
+          <span>Inbox</span>
+        </a><a href="student-profile.html" data-module-id="student-profile" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">👤</span>
+          <span>Student Profile</span>
+        </a><a href="cbt-exam.html" data-module-id="cbt-exam" data-role-allow="any all public super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🧪</span>
+          <span>Take Exam</span>
+        </a><a href="verify-certificate.html" data-module-id="verify-certificate" data-role-allow="any all public super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🔎</span>
+          <span>Verify Certificate</span>
+        </a><a href="teacher-overview.html" data-module-id="teacher-overview" data-role-allow="super_admin admin principal proprietor head_teacher bursar" class="">
+          <span class="app-nav-icon">👨‍🏫</span>
+          <span>Teacher Overview</span>
+        </a><a href="feature-guide.html" data-module-id="feature-guide" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">📘</span>
+          <span>Feature Guide</span>
+        </a><a href="about.html" data-module-id="about" data-role-allow="any all public super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🏫</span>
+          <span>About</span>
+        </a><a href="contact.html" data-module-id="contact" data-role-allow="any all public super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">☎️</span>
+          <span>Contact</span>
+        </a><a href="apply.html" data-module-id="apply" data-role-allow="any all public super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">📝</span>
+          <span>Apply</span>
+        </a><a href="notifications.html" data-module-id="notifications" data-role-allow="super_admin admin principal proprietor head_teacher bursar staff teacher parent student" class="">
+          <span class="app-nav-icon">🔔</span>
+          <span>Notifications</span>
+        </a>
+      </nav>
+      <div style="margin-top:auto;padding:16px;border-top:1px solid var(--gray-200);font-size:0.78rem;color:var(--gray-500)">
+        Powered by <a href="https://hmgconcepts.pages.dev/" target="_blank" rel="noopener">HMG Concepts</a>
+      </div>
+    </aside>
+  <main class="app-main">
+    <header class="app-topbar">
+      <button class="mobile-toggle" onclick="App.toggleSidebar()" title="Menu">☰</button>
+      <h1 class="app-page-title">Feature Guide</h1>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:12px">
+        
+        <button class="btn btn-sm btn-outline" onclick="if(window.Super)Super.chatbot.explainPage()" title="About this page">ℹ️ Help</button>
+        <div class="user-chip" style="display:flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--gray-200);border-radius:999px;background:var(--white)"><span>👤</span><span><strong id="user-display-name">Guest</strong><small id="user-display-role" style="display:block;color:var(--gray-500);line-height:1">not signed in</small></span></div>
+        <button class="btn btn-sm btn-outline" onclick="App.toggleDarkMode()" title="Toggle theme">🌙</button>
+        <button class="btn btn-sm btn-outline" onclick="App.signOut()" data-signout >Sign out</button>
+      </div>
+    </header>
+    <div class="app-content">
+      
+      <div class="card" style="margin-bottom:18px;background:#eef2ff;border-color:#c7d2fe">
+        <h2 style="margin-top:0">📘 Complete School Connect Feature Guide</h2>
+        <p style="color:var(--gray-700)">This page explains every feature in plain language: what it does, who uses it, how to use it, advantages and school benefit. It uses no paid AI API and is generated free with the school site.</p>
+        <div class="grid grid-4" style="margin-top:12px">
+          <div class="stat-card"><div class="stat-value">92</div><div class="stat-label">Documented Pages</div></div>
+          <div class="stat-card"><div class="stat-value">Free</div><div class="stat-label">No AI API Required</div></div>
+          <div class="stat-card"><div class="stat-value">PWA</div><div class="stat-label">Installable</div></div>
+          <div class="stat-card"><div class="stat-value">RLS</div><div class="stat-label">Supabase Security</div></div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:18px">
+        <h3>🏛️ Admin / Super Admin oversight model</h3>
+        <p>Admin and Super Admin get the admin dashboard plus overview cards of staff, parent/payment and student dashboards for management, supervision, payment tracking and safeguarding. Staff, parents and students still see only their own dashboards.</p>
+      </div>
+      <div class="card" style="margin-bottom:14px">
+        <h3>🏠 Dashboard</h3>
+        <p><strong>What it does:</strong> Role-specific dashboards for admin/super-admin, staff, parents and students.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="dashboard.html">Open Dashboard</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📘 Feature Guide</h3>
+        <p><strong>What it does:</strong> Detailed explanation of every module and how to deploy/use the system.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="feature-guide.html">Open Feature Guide</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>👤 Student Profile</h3>
+        <p><strong>What it does:</strong> Complete learner record, fees, attendance, results and support view.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="student-profile.html">Open Student Profile</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🧪 Take Exam</h3>
+        <p><strong>What it does:</strong> Anonymous or student assessment page for tests and entrance exams.</p>
+        <p><strong>Who uses it:</strong> any all public super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="cbt-exam.html">Open Take Exam</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>⚙️ Academic Setup</h3>
+        <p><strong>What it does:</strong> Enter/manage departments, terms, sessions, arms and academic periods used across the platform.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="academic_setup.html">Open Academic Setup</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>👨‍🎓 Students</h3>
+        <p><strong>What it does:</strong> Your complete student register — every learner enrolled in the school.</p>
+        <p><strong>Who uses it:</strong> Admin &amp; staff add/edit; parents see only their own children.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>+ Add new</b> to enroll a student (the <b>Admission No is auto-generated</b> — never type it).</li><li>Pick the <b>Class</b> from the dropdown so the student is grouped correctly.</li><li>Use <b>Import CSV</b> to register many students at once (download the template first).</li><li>Every other page (results, fees, attendance…) pulls student names from here, so there is no re-typing.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="students.html">Open Students</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>👨‍🏫 Staff</h3>
+        <p><strong>What it does:</strong> The directory of all teaching and non-teaching staff.</p>
+        <p><strong>Who uses it:</strong> Admin/HR maintain it; approved staff sign-ups appear here automatically.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>+ Add new</b>; choose <b>Teaching</b> or <b>Non-teaching</b>.</li><li>For teachers, pick the <b>Subject taught</b> from the dropdown.</li><li>For privacy, date of birth is captured as <b>day & month only</b>.</li><li>A <b>Staff No is auto-generated</b> on save.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="staff.html">Open Staff</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📚 Classes</h3>
+        <p><strong>What it does:</strong> Defines each class/arm the school runs (e.g. JSS1 A).</p>
+        <p><strong>Who uses it:</strong> Admin sets these up at the start of the session.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>+ Add new</b>; type the class name and arm.</li><li>Pick the <b>Class teacher</b> from the staff dropdown (only teaching staff appear).</li><li>Set the level and capacity.</li><li>These classes then appear as dropdown options everywhere a class is needed.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="classes.html">Open Classes</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>◦ Subjects</h3>
+        <p><strong>What it does:</strong> The list of every subject the school offers.</p>
+        <p><strong>Who uses it:</strong> Admin/HOD register subjects once per session.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>+ Add new</b>; type the subject, code, department and level.</li><li>Map it to a <b>Subject teacher</b> from the staff dropdown.</li><li>Subjects then appear in results, scheme of work, assignments and the timetable.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="subjects.html">Open Subjects</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📋 Attendance</h3>
+        <p><strong>What it does:</strong> Daily/class attendance — who was present, absent, late or excused.</p>
+        <p><strong>Who uses it:</strong> Class teachers record it; parents view their own children.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>+ Add new</b>, pick the student (class auto-fills), set the status and time.</li><li>Or click <b>📲 Pull from QR Check-in</b> to mark a whole class present in one click from today's scans.</li><li>Export to CSV/PDF for records.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="attendance.html">Open Attendance</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📊 Results</h3>
+        <p><strong>What it does:</strong> Raw CA + exam scores per student, subject, term and session.</p>
+        <p><strong>Who uses it:</strong> Subject teachers enter scores; they feed report cards &amp; promotion.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>+ Add new</b>; pick the student, subject, class, term and session (all dropdowns).</li><li>Enter CA1/CA2/CA3 and Exam; the grade is auto-suggested.</li><li>These scores roll up into Report Cards and drive Automated Promotion.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="results.html">Open Results</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🗓️ Timetable</h3>
+        <p><strong>What it does:</strong> Class &amp; exam timetables with auto-conflict detection.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="timetable.html">Open Timetable</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📋 Scheme</h3>
+        <p><strong>What it does:</strong> The Scheme of Work — each teacher&#39;s termly topic plan.</p>
+        <p><strong>Who uses it:</strong> Teachers fill it at term start; admin monitors coverage.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Add a row per week: subject, class, week number and topic.</li><li>Each week, tick <b>“Taught this week (confirm)”</b> as you cover a topic.</li><li>Admin can see covered vs uncovered topics at a glance.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="sow.html">Open Scheme</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>💻 CBT</h3>
+        <p><strong>What it does:</strong> Full embedded CBT engine: 17 question types, CSV upload, timer, randomisation, negative marking, anti-cheat, certificates, link/code access — results auto-flow into report cards.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="cbt.html">Open CBT</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🧩 AI Question Prompts</h3>
+        <p><strong>What it does:</strong> Ready-made Simple/Intermediate/Advanced prompts you paste into any free AI chat to draft CBT questions in the exact CSV format — copy, edit, upload. The platform itself uses no paid AI.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="cbt-prompts.html">Open AI Question Prompts</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🎯 Entrance &amp; Assessments</h3>
+        <p><strong>What it does:</strong> Run entrance/common-entrance/placement exams that anonymous candidates can sit. Instant result slips, certificates and admission letters — single or bulk.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="entrance.html">Open Entrance &amp; Assessments</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🗄️ Storage Manager</h3>
+        <p><strong>What it does:</strong> See how much Supabase space each table uses and safely purge old, low-value rows (after exporting) to make room — keeps you on the free tier.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="storage.html">Open Storage Manager</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🧾 Report Cards</h3>
+        <p><strong>What it does:</strong> Builds termly report cards, broadsheets and scoresheets.</p>
+        <p><strong>Who uses it:</strong> Teachers/admin generate them at term end.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Define assessment columns (CA1, CA2, Assignment, Exam…) and their max marks.</li><li>Enter or auto-pull scores (CBT and Digital-Library marks can flow in automatically).</li><li>Generate each student's report card, the class broadsheet, or the teacher scoresheet — print or save as PDF.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="report-cards.html">Open Report Cards</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📊 Analytics</h3>
+        <p><strong>What it does:</strong> Live, platform-wide KPIs &amp; charts across every module to support informed decisions.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="analytics.html">Open Analytics</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>✅ Approvals</h3>
+        <p><strong>What it does:</strong> Approve/reject prospective students, parents and staff (and admissions applications) right from the admin dashboard. Set roles, approve, suspend or delete.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="approvals.html">Open Approvals</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🗄️ Admin Data</h3>
+        <p><strong>What it does:</strong> Admin-only: read, delete, full backup (JSON) and restore of every table on the client site. All actions logged.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="admin-data.html">Open Admin Data</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🗓️ Auto-Timetable</h3>
+        <p><strong>What it does:</strong> Auto-builds a conflict-free timetable (no class/teacher double-booking) from each subject weekly period demand — deterministic, no AI.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="timetable-generator.html">Open Auto-Timetable</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📲 QR Check-in</h3>
+        <p><strong>What it does:</strong> Students self-check-in by scanning their ID-card QR (or typing admission no). No biometric hardware needed.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="checkin.html">Open QR Check-in</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📔 Diary</h3>
+        <p><strong>What it does:</strong> Daily homework/classwork/behaviour log; parents view &amp; acknowledge.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="diary.html">Open Diary</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🗒️ Surveys</h3>
+        <p><strong>What it does:</strong> Anonymous-optional feedback forms &amp; surveys with response collection.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="surveys.html">Open Surveys</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🍽️ Menu</h3>
+        <p><strong>What it does:</strong> Weekly meal planner with allergen notes for parents.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="menu.html">Open Menu</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>⚙️ Settings (2FA · Language · A11y)</h3>
+        <p><strong>What it does:</strong> Free email-OTP 2FA, multi-language UI (incl. Hausa/Yoruba/Igbo), and accessibility (font scaling, high contrast).</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="settings.html">Open Settings (2FA · Language · A11y)</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📝 Assignments</h3>
+        <p><strong>What it does:</strong> Post &amp; track assignments with submission and grading.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="assignments.html">Open Assignments</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📖 Library</h3>
+        <p><strong>What it does:</strong> The physical book catalogue and lending records.</p>
+        <p><strong>Who uses it:</strong> Librarian/staff manage; everyone can browse.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>+ Add new</b> to catalogue a book (title, author, copies).</li><li>Track how many are lent out.</li><li>For online reading + quizzes that count toward grades, use <b>Digital Library</b>.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="library.html">Open Library</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📚 Digital Library</h3>
+        <p><strong>What it does:</strong> Teachers assign online books/links + optional comprehension questions; auto-scored marks count toward grades.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="digital_library.html">Open Digital Library</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>⚖️ Conduct</h3>
+        <p><strong>What it does:</strong> Merit/demerit, incidents, pattern tracking.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher parent</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="conduct.html">Open Conduct</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🩺 Health</h3>
+        <p><strong>What it does:</strong> Sick-bay visits, medical history, allergy alerts.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher parent</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="health.html">Open Health</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🎓 Promotion</h3>
+        <p><strong>What it does:</strong> Moves students to the next class — automatically, by exam result.</p>
+        <p><strong>Who uses it:</strong> Admin/proprietor run it at session end.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>⚙ Auto-promote (by exam)</b>; set a pass benchmark and the graduating class.</li><li>The system drafts promote / repeat / graduate decisions from each student's term average.</li><li>Review & edit any row, then click <b>✅ Apply promotions</b>. Nothing changes until you apply.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="promotion.html">Open Promotion</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>💰 Fees</h3>
+        <p><strong>What it does:</strong> Records school-fee payments and shows balances per student.</p>
+        <p><strong>Who uses it:</strong> Bursar/admin record payments; parents see their own.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>+ Add new</b>, pick the student, enter the amount, method and reference.</li><li>Each payment appears in the student's <b>payment history</b> on their dashboard.</li><li>Export statements to CSV/PDF.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="fees.html">Open Fees</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>💵 Finance</h3>
+        <p><strong>What it does:</strong> Income/expense ledger with charts and KPI analytics.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="finance.html">Open Finance</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🏖️ Leave</h3>
+        <p><strong>What it does:</strong> Staff leave requests with approval workflows and calendar.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="leave.html">Open Leave</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🚪 Visitors</h3>
+        <p><strong>What it does:</strong> Gate-pass, check-in/out, host notifications, badges.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="visitors.html">Open Visitors</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🚌 Transport</h3>
+        <p><strong>What it does:</strong> Routes, GPS tracking, pick-up records.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="transport.html">Open Transport</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📢 Announcements</h3>
+        <p><strong>What it does:</strong> Post notices to the whole school or a chosen audience.</p>
+        <p><strong>Who uses it:</strong> Staff post; everyone receives.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>+ Add new</b>; write the title and body.</li><li>Choose the <b>audience</b> (all / students / parents / staff / a class) from the dropdown.</li><li>Pin urgent notices to the top.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="announcements.html">Open Announcements</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🎭 Events</h3>
+        <p><strong>What it does:</strong> Term calendar with RSVP, venue booking.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="events.html">Open Events</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📱 Messaging</h3>
+        <p><strong>What it does:</strong> Free bulk WhatsApp + email + SMS to parents/staff.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="messages.html">Open Messaging</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>💬 Inbox</h3>
+        <p><strong>What it does:</strong> Private staff↔admin↔parent threaded messaging.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="inbox.html">Open Inbox</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📨 Complaints</h3>
+        <p><strong>What it does:</strong> Submit→route→track→resolve with evidence and status.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="complaints.html">Open Complaints</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📨 Result Broadcast</h3>
+        <p><strong>What it does:</strong> One-click send results to parents via free channels.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="broadcast.html">Open Result Broadcast</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🗳️ Voting</h3>
+        <p><strong>What it does:</strong> Class prefects, head boy/girl, staff polls, anonymous ballots.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="voting.html">Open Voting</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🖼️ Gallery</h3>
+        <p><strong>What it does:</strong> Albums, Google Drive image linking, YouTube embeds.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="gallery.html">Open Gallery</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📁 E-Resources</h3>
+        <p><strong>What it does:</strong> Curriculum document and past paper repository. A secure digital filing system allowing teachers to share class study materials, revision guides, and exam syllabi via direct web links or Google Drive URLs without consuming database storage.</p>
+        <p><strong>Who uses it:</strong> Teachers upload; Students/Parents view.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Enter title, subject, class, and term.</li><li>Paste direct resource or Drive URL.</li><li>Save to publish to student portals.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="eresources.html">Open E-Resources</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🎂 Birthdays</h3>
+        <p><strong>What it does:</strong> Celebrates student &amp; staff birthdays, grouped by birth month.</p>
+        <p><strong>Who uses it:</strong> Everyone can view; staff manage.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>🎂 Import student birthdays</b> to pull dates from the student register.</li><li>Birthdays are grouped by month, showing each student's name and class.</li><li>Use it to plan celebrations and shout-outs.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="birthdays.html">Open Birthdays</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🪪 ID Cards</h3>
+        <p><strong>What it does:</strong> Generate professional digital ID cards (students &amp; staff).</p>
+        <p><strong>Who uses it:</strong> Admin / office staff.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Choose a card type (student or staff) and a professional template.</li><li>Pick the person; the photo and details fill in.</li><li>Print one card or <b>Print ALL</b>.</li></ol>
+        <p><strong>Advantages:</strong></p><ul style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Several international-standard templates</li><li>Full school contact details + QR</li><li>Bulk printing</li></ul>
+        <p><strong>Benefit:</strong> Smart, secure ID cards that look world-class — printed in-house for free.</p>
+        <a class="btn btn-outline btn-sm" href="idcards.html">Open ID Cards</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📰 Flyer</h3>
+        <p><strong>What it does:</strong> Design professional marketing flyers to international standards.</p>
+        <p><strong>Who uses it:</strong> Admin / marketing.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Pick a premium template, size and colour palette.</li><li>Edit the headline, bullets and call-to-action.</li><li>Print or save as PDF/image for print and social media.</li></ol>
+        <p><strong>Advantages:</strong></p><ul style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Premium templates & palettes</li><li>Print and social sizes</li><li>Full text control</li></ul>
+        <p><strong>Benefit:</strong> Eye-catching admissions marketing produced in-house, saving design fees.</p>
+        <a class="btn btn-outline btn-sm" href="flyer.html">Open Flyer</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📈 Reports</h3>
+        <p><strong>What it does:</strong> Custom administrative and departmental summaries. A flexible reporting log where heads of department and administrators file official termly summaries, inspection notes, and executive status briefs for institutional governance.</p>
+        <p><strong>Who uses it:</strong> Staff and Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Enter report title and category.</li><li>Input summary notes and dates.</li><li>Export PDF for administrative archives.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="reports.html">Open Reports</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🔍 Directory</h3>
+        <p><strong>What it does:</strong> Searchable contact registry for staff and students. Aggregates active database profiles into a searchable, read-only contact directory. Displays full names, institutional email addresses, phone contacts, roles, and current academic standing.</p>
+        <p><strong>Who uses it:</strong> Staff and Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Use global search bar to locate profiles.</li><li>Filter by user role or status.</li><li>Verify contact credentials for outreach.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="directory.html">Open Directory</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🏢 Departments</h3>
+        <p><strong>What it does:</strong> Academic faculty and HOD structure setup. Defines the institutional academic architecture by establishing distinct academic departments (e.g., Sciences, Arts, Languages) and assigning official Heads of Department (HOD) for faculty governance.</p>
+        <p><strong>Who uses it:</strong> Admin and Super Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Input department title.</li><li>Assign official HOD from staff registry.</li><li>Verify departmental structure in academic setup.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="departments.html">Open Departments</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>👨‍👩‍👧 Parent–Child</h3>
+        <p><strong>What it does:</strong> Link parents/guardians to their children.</p>
+        <p><strong>Who uses it:</strong> Admin / office staff.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>+ Add new</b>.</li><li>Pick the <b>parent</b> from the dropdown (registered parent accounts).</li><li>Pick the <b>student</b> from the class-grouped, searchable list and set the relationship.</li></ol>
+        <p><strong>Advantages:</strong></p><ul style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Both parent and student chosen from lists — no typing IDs</li><li>Searchable pickers</li><li>Powers the parent portal</li></ul>
+        <p><strong>Benefit:</strong> Accurate family links so parents see exactly their own children.</p>
+        <a class="btn btn-outline btn-sm" href="parents.html">Open Parent–Child</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📝 Admissions</h3>
+        <p><strong>What it does:</strong> Public application form → review funnel → enrollment.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="admissions.html">Open Admissions</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>💼 HR &amp; Payroll</h3>
+        <p><strong>What it does:</strong> Run staff salaries and print professional payslips.</p>
+        <p><strong>Who uses it:</strong> Bursar / HR / proprietor.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>+ Add new</b>; pick the staff member from the list.</li><li>Enter basic, allowances, bonus, overtime and any deductions (tax, pension, loan).</li><li>Leave <b>Net pay</b> blank — it is calculated automatically.</li><li>Click <b>Payslip</b> on any row to print a branded payslip.</li></ol>
+        <p><strong>Advantages:</strong></p><ul style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Automatic net-pay calculation</li><li>Professional, printable payslips</li><li>Pick staff from a list — no typing errors</li></ul>
+        <p><strong>Benefit:</strong> Accurate, on-time salaries that boost morale and keep you compliant.</p>
+        <a class="btn btn-outline btn-sm" href="hr.html">Open HR &amp; Payroll</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🧾 Payroll Register</h3>
+        <p><strong>What it does:</strong> The full monthly salary register for all staff.</p>
+        <p><strong>Who uses it:</strong> Bursar / HR / proprietor.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Add a salary record per staff per month (net pay auto-computes).</li><li>Approve and mark as paid.</li><li>Print individual or bulk payslips.</li></ol>
+        <p><strong>Advantages:</strong></p><ul style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>One register for the whole school</li><li>Auto net-pay</li><li>Audit-friendly</li></ul>
+        <p><strong>Benefit:</strong> A single source of truth for staff pay and budgeting.</p>
+        <a class="btn btn-outline btn-sm" href="payroll.html">Open Payroll Register</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🏦 Staff Loans &amp; Advances</h3>
+        <p><strong>What it does:</strong> Track staff loans &amp; salary advances with repayment schedules.</p>
+        <p><strong>Who uses it:</strong> Bursar / HR.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>+ Add new</b>; pick the staff member and enter the amount borrowed.</li><li>Set the monthly repayment (EMI) and number of months.</li><li>Update <b>amount repaid</b> over time and the status.</li></ol>
+        <p><strong>Advantages:</strong></p><ul style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>EMI repayment tracking</li><li>Live outstanding balance</li><li>Status: active / completed / defaulted</li></ul>
+        <p><strong>Benefit:</strong> Controlled, transparent staff lending with no missed repayments.</p>
+        <a class="btn btn-outline btn-sm" href="staff_loans.html">Open Staff Loans &amp; Advances</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🎁 Staff Bonuses</h3>
+        <p><strong>What it does:</strong> Record performance &amp; special bonuses per staff member.</p>
+        <p><strong>Who uses it:</strong> HR / proprietor.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>+ Add new</b>; pick the staff member and bonus type.</li><li>Enter the amount and a citation/reason.</li><li>Set the pay status.</li></ol>
+        <p><strong>Advantages:</strong></p><ul style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Categorised bonuses</li><li>Documented citations</li><li>Feeds payroll</li></ul>
+        <p><strong>Benefit:</strong> Fair, documented rewards that motivate your best staff.</p>
+        <a class="btn btn-outline btn-sm" href="staff_bonus.html">Open Staff Bonuses</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>⭐ Staff Appraisals</h3>
+        <p><strong>What it does:</strong> Structured staff performance appraisals with scoring.</p>
+        <p><strong>Who uses it:</strong> HODs / principal / proprietor.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>+ Add new</b>; pick the staff member and period.</li><li>Score each criterion 1–10 (punctuality, teaching quality, results, teamwork, conduct).</li><li>The <b>total score & band</b> are computed automatically; add a recommendation.</li></ol>
+        <p><strong>Advantages:</strong></p><ul style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Objective weighted scoring</li><li>Auto grade band</li><li>Clear recommendation</li></ul>
+        <p><strong>Benefit:</strong> Evidence-based staff development and promotion decisions.</p>
+        <a class="btn btn-outline btn-sm" href="appraisals.html">Open Staff Appraisals</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📐 Grading Rubrics</h3>
+        <p><strong>What it does:</strong> Standardized student conduct evaluation matrices. Provides standardized grading criteria for evaluating student affective traits and behavioral conduct. Establishes uniform benchmarks for punctuality, respect, neatness, and teamwork across all class arms.</p>
+        <p><strong>Who uses it:</strong> Staff and Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Define behavioral evaluation criteria.</li><li>Establish scoring weightages.</li><li>Apply rubrics across termly student report cards.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="rubrics.html">Open Grading Rubrics</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🎓 Academic Transcripts</h3>
+        <p><strong>What it does:</strong> Comprehensive multi-term academic record synthesis. Compiles student continuous assessments and examination results across multiple academic terms and sessions into official, printable academic transcripts suitable for university applications and transfers.</p>
+        <p><strong>Who uses it:</strong> Admin and Staff.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Select student profile.</li><li>Specify academic terms and sessions to include.</li><li>Generate comprehensive transcript grid.</li><li>Click Print/Save PDF for official watermarked export.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="transcripts.html">Open Academic Transcripts</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📄 Transfer Certificates</h3>
+        <p><strong>What it does:</strong> Official student departure and clearance documentation. Generates official school leaving certificates and clearance documentation for departing students. Records academic standing, final attendance summaries, conduct ratings, and official release authorization.</p>
+        <p><strong>Who uses it:</strong> Admin and Staff.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Select departing student.</li><li>Verify fee payment clearance.</li><li>Verify academic standing and conduct.</li><li>Print/Save official Transfer Certificate.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="transfer_cert.html">Open Transfer Certificates</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>💬 Counselling &amp; Wellbeing</h3>
+        <p><strong>What it does:</strong> Confidential academic and psychological guidance tracking. A secure logging facility where school guidance counsellors record confidential student guidance sessions, psychological intervention notes, university placement advice, and career action plans.</p>
+        <p><strong>Who uses it:</strong> Staff and Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Select student profile.</li><li>Record guidance discussion notes.</li><li>Set follow-up review dates.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="counselling.html">Open Counselling &amp; Wellbeing</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🛏️ Hostel</h3>
+        <p><strong>What it does:</strong> Student accommodation and dormitory wing management. Manages residential student housing by tracking dormitory wings, specific room numbers, bed allocations, and supervising boarding housemasters/mistresses.</p>
+        <p><strong>Who uses it:</strong> Staff and Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Select boarding student.</li><li>Assign specific dormitory wing and room number.</li><li>Record emergency boarding contacts.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="hostel.html">Open Hostel</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🤝 Alumni</h3>
+        <p><strong>What it does:</strong> Past student tracking and institutional network archiving. Preserves the institutional heritage by maintaining an active database of graduated students. Records graduation cohorts, higher education placements, career achievements, and alumni association contact details.</p>
+        <p><strong>Who uses it:</strong> Admin and Super Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Migrate graduated student cohorts.</li><li>Update higher education and career placement notes.</li><li>Filter alumni registry by graduation session.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="alumni.html">Open Alumni</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📦 Inventory</h3>
+        <p><strong>What it does:</strong> Asset tracking and physical facility logging. A dedicated physical asset ledger tracking institutional equipment, laboratory apparatus, classroom furniture, and maintenance supplies. Records initial quantities, unit valuations, storage locations, and current asset conditions.</p>
+        <p><strong>Who uses it:</strong> Admin and Super Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Input asset description and serial number.</li><li>Log physical quantity and storage location.</li><li>Perform regular asset condition audits.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="inventory.html">Open Inventory</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📜 Certificates</h3>
+        <p><strong>What it does:</strong> Issue branded, printable certificates (achievement, graduation, testimonial) with a unique verification code.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="certificates.html">Open Certificates</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📅 Calendar</h3>
+        <p><strong>What it does:</strong> Master academic event schedule and holiday tracking. The definitive institutional calendar displaying term start dates, examination timeframes, public holidays, sports events, and parent-teacher meeting schedules for the entire school community.</p>
+        <p><strong>Who uses it:</strong> Staff manage; All users view.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Specify calendar event title and exact dates.</li><li>Categorize event (Exam, Holiday, Term-start).</li><li>Publish to master institutional dashboard.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="school_calendar.html">Open Calendar</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🔍 Lost &amp; Found</h3>
+        <p><strong>What it does:</strong> Campus property logging for lost items and claims. A campus property ledger where staff and students log found personal items, textbooks, and electronic devices. Records item descriptions, finding locations, and successful property claims.</p>
+        <p><strong>Who uses it:</strong> All users view; Staff manage.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Log item description and finding location.</li><li>Categorize status (Lost vs Found).</li><li>Update record status once claimed by owner.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="lost_found.html">Open Lost &amp; Found</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>👥 PTA Meeting</h3>
+        <p><strong>What it does:</strong> PTA assembly logging, scheduling, and official minutes. Manages institutional Parent-Teacher Association (PTA) assemblies, individual teacher consultation schedules, official meeting agendas, and published assembly minutes.</p>
+        <p><strong>Who uses it:</strong> Staff manage; Parents view.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Schedule PTA assembly date, time, and venue.</li><li>Publish official meeting agenda topics.</li><li>Attach comprehensive post-meeting assembly minutes.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="parent_meeting.html">Open PTA Meeting</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📖 Book Request</h3>
+        <p><strong>What it does:</strong> Student book reservation and lending requests. A dedicated library service portal where students and staff request physical book reservations, track lending availability, and lodge requests for new curriculum textbooks.</p>
+        <p><strong>Who uses it:</strong> Students/Staff request; Librarian manages.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Specify book title and author name.</li><li>Submit reservation request.</li><li>Track reservation status (Requested, Reserved, Issued).</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="book_request.html">Open Book Request</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🎓 LMS</h3>
+        <p><strong>What it does:</strong> Structured digital courseware and video lesson delivery. A complete digital courseware hub where teachers structure academic lessons, embed instructional lecture videos, upload study notes, and assign interactive assignments for self-paced student learning.</p>
+        <p><strong>Who uses it:</strong> Teachers upload; Students learn.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Select subject and target class arm.</li><li>Input lesson title and study instructions.</li><li>Embed direct lecture video or Drive URL.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="lms.html">Open LMS</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🏅 Gamification</h3>
+        <p><strong>What it does:</strong> Reward points &amp; badges for good behaviour and effort (PBIS).</p>
+        <p><strong>Who uses it:</strong> Teachers award points; students/parents see them.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click <b>+ Add new</b>, pick the student, enter points and a reason.</li><li>Points are logged transparently and can appear on the student dashboard.</li><li>Use badges to reinforce positive behaviour.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="gamification.html">Open Gamification</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🍽️ Cafeteria</h3>
+        <p><strong>What it does:</strong> Weekly school meal menus and allergen tracking. Manages the institutional cafeteria by publishing daily and weekly student dining menus. Captures meal descriptions, nutritional notes, and mandatory allergen warnings to ensure student dining safety.</p>
+        <p><strong>Who uses it:</strong> Staff manage; Students/Parents view.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Specify day of the week and meal category.</li><li>Describe dining menu items.</li><li>Flag mandatory allergen warnings (e.g., Nuts, Dairy).</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="cafeteria.html">Open Cafeteria</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🎗️ Financial Aid</h3>
+        <p><strong>What it does:</strong> Fee waiver tracking and student sponsorship logging. Maintains official records of institutional scholarships, fee discounts, bursaries, and corporate sponsorships awarded to deserving students. Interconnects with the fee management engine for accurate balance calculations.</p>
+        <p><strong>Who uses it:</strong> Admin and Bursar.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Select student profile.</li><li>Input scholarship title and fee waiver percentage.</li><li>Verify active sponsorship status.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="financial_aid.html">Open Financial Aid</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🛎️ Front Desk</h3>
+        <p><strong>What it does:</strong> Gatekeeper logging for walk-ins, dispatches, and calls. A comprehensive administrative reception ledger tracking institutional visitors, daily package dispatches, walk-in inquiries, and official phone logs to enforce rigorous campus security.</p>
+        <p><strong>Who uses it:</strong> Staff and Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Select inquiry type (Call, Walk-in, Dispatch).</li><li>Record visitor identity and purpose.</li><li>Timestamp arrival and departure metrics.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="front_desk.html">Open Front Desk</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🧭 Career</h3>
+        <p><strong>What it does:</strong> Higher education tracking and career placement logs. Maintains longitudinal tracking of senior student higher education applications, university admission offers, aptitude test results, and professional career placement milestones.</p>
+        <p><strong>Who uses it:</strong> Staff and Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Select senior student profile.</li><li>Record university application progress.</li><li>Attach official scholarship and admission offer notes.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="career_counseling.html">Open Career</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🧾 Documents</h3>
+        <p><strong>What it does:</strong> Custom administrative certificate and letter publishing. A dynamic publishing engine allowing administrators to format and print official school correspondence, bonafide certificates, examination hall passes, and custom testimonials instantly.</p>
+        <p><strong>Who uses it:</strong> Staff and Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Select document format preset.</li><li>Customize letterhead and body text.</li><li>Input recipient profile data.</li><li>Click Print/Save PDF for watermarked export.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="document_builder.html">Open Documents</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🛰️ Fleet</h3>
+        <p><strong>What it does:</strong> Bus route logistics, driver tracking, and maintenance logs. Manages institutional transportation logistics by maintaining active ledgers of school bus routes, assigned transport vehicles, authorized drivers, daily pick-up schedules, and scheduled fleet maintenance.</p>
+        <p><strong>Who uses it:</strong> Staff and Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Input bus vehicle registration and route name.</li><li>Assign authorized transport driver.</li><li>Log daily route schedules and maintenance notes.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="fleet_tracking.html">Open Fleet</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🏟️ Facilities</h3>
+        <p><strong>What it does:</strong> Resource reservation for auditoriums, labs, and grounds. A scheduling console for reserving shared campus infrastructure such as science laboratories, auditoriums, sports grounds, and conference rooms. Prevents double-booking via conflict checking.</p>
+        <p><strong>Who uses it:</strong> Staff and Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Select campus facility.</li><li>Reserve specific calendar date and time blocks.</li><li>Authorize reservation approval status.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="facility_booking.html">Open Facilities</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>✅ Compliance</h3>
+        <p><strong>What it does:</strong> Institutional certification and government regulation tracking. An executive governance dashboard tracking mandatory government accreditations, ministry inspection timelines, safety audit certificates, and statutory operational compliance milestones.</p>
+        <p><strong>Who uses it:</strong> Admin and Super Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Input statutory certification title.</li><li>Record official approval dates and issuing ministry.</li><li>Set automatic renewal warning dates.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="compliance.html">Open Compliance</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🧮 Activity Log</h3>
+        <p><strong>What it does:</strong> A tamper-evident audit trail of every important action.</p>
+        <p><strong>Who uses it:</strong> Admin/super-admin only — read-only.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Every create, update, delete, import and login is recorded here automatically.</li><li>You cannot add rows manually — the system writes them.</li><li>Filter/export for accountability and security reviews.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="activity_log.html">Open Activity Log</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>📄 Records</h3>
+        <p><strong>What it does:</strong> Generate student record cards, class broadsheets and subject broadsheets for print/PDF.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar super admin admin principal proprietor head teacher bursar staff teacher</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="academic_records.html">Open Records</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>👨‍💻 About the Developer</h3>
+        <p><strong>What it does:</strong> The developer &amp; HMG Concepts brand bio — the last page of the site.</p>
+        <p><strong>Who uses it:</strong> super admin admin principal proprietor head teacher bursar staff teacher parent student</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Open the page from the navigator.</li><li>Use the action buttons at the top of the page.</li><li>Export or print records where available.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="developer.html">Open About the Developer</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🗒️ Lesson Plans</h3>
+        <p><strong>What it does:</strong> Structured instructional planning and HOD vetting. Provides a structured digital template where teachers author daily and weekly lesson plans, establishing core learning objectives, teaching methodologies, and assessment strategies for HOD vetting.</p>
+        <p><strong>Who uses it:</strong> Teachers author; HODs vet.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Select subject, class arm, and date.</li><li>Establish core instructional objectives.</li><li>Submit lesson plan for official HOD review.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="lesson_plans.html">Open Lesson Plans</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🏅 Behaviour</h3>
+        <p><strong>What it does:</strong> Behavioral tracking and disciplinary action recording. A specialized pastoral care ledger for tracking student behavioral milestones, positive conduct citations, disciplinary infractions, and administrative intervention measures.</p>
+        <p><strong>Who uses it:</strong> Staff and Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Select student profile.</li><li>Select conduct category (Positive vs Infraction).</li><li>Record detailed behavioral notes and actions taken.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="behaviour.html">Open Behaviour</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🧩 Support Plans</h3>
+        <p><strong>What it does:</strong> Individualized Education Plans and academic interventions. Manages Individualized Education Plans (IEP) and specialized learning accommodations for students requiring academic remediation, specialized therapy, or behavioral support.</p>
+        <p><strong>Who uses it:</strong> Staff and Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Select student profile.</li><li>Define specific learning accommodations and goals.</li><li>Log regular intervention review notes.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="support_plans.html">Open Support Plans</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>💝 Donations</h3>
+        <p><strong>What it does:</strong> Philanthropic endowment tracking and benefactor logging. A secure financial ledger maintaining comprehensive records of institutional endowments, alumni donations, corporate grants, and charitable contributions complete with benefactor metadata.</p>
+        <p><strong>Who uses it:</strong> Admin and Super Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Input benefactor identity and grant title.</li><li>Log financial donation amount and date.</li><li>Allocate funds to specific school projects.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="donations.html">Open Donations</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🔁 Substitutions</h3>
+        <p><strong>What it does:</strong> Emergency class cover and absentee teacher replacement. Maintains operational continuity by managing emergency teacher substitutions. Reassigns available teaching staff to cover classes for absent colleagues based on active availability rosters.</p>
+        <p><strong>Who uses it:</strong> Staff and Admin.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Select absent teacher and affected class arm.</li><li>Assign available substitute teacher.</li><li>Notify substitute staff member via portal alerts.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="substitutions.html">Open Substitutions</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>🆘 Help Desk</h3>
+        <p><strong>What it does:</strong> Institutional ticketing for repairs, IT, and maintenance. A complete institutional service desk where staff and students lodge repair tickets for broken campus hardware, IT network issues, plumbing faults, and physical facility maintenance.</p>
+        <p><strong>Who uses it:</strong> All users submit; Admin resolves.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Click Add new.</li><li>Select issue category (IT, Maintenance, Facilities).</li><li>Describe specific repair requirements.</li><li>Track ticket status through to resolution.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="helpdesk.html">Open Help Desk</a>
+      </div><div class="card" style="margin-bottom:14px">
+        <h3>💳 Online Pay</h3>
+        <p><strong>What it does:</strong> Digital payment tracking and secure fee gateways. Integrates electronic fee transactions, digital bank transfers, and online payment gateway logs into the master school financial dashboard, generating verified instant e-receipts.</p>
+        <p><strong>Who uses it:</strong> Admin manage; Parents/Students pay.</p>
+        <p><strong>How to use it:</strong></p>
+        <ol style="margin:0 0 10px 20px;color:var(--gray-700);line-height:1.7"><li>Initialize secure online fee payment links.</li><li>Verify electronic transaction logs.</li><li>Generate automated instant e-receipts.</li></ol>
+        
+        
+        <a class="btn btn-outline btn-sm" href="payments_online.html">Open Online Pay</a>
+      </div>
+    </div>
+    <footer style="padding:20px 28px;border-top:1px solid var(--gray-200);font-size:0.82rem;color:var(--gray-500);text-align:center">
+      © 2026 God of Seed Academy · Built by <a href="https://cssadewale.pages.dev" target="_blank" rel="noopener">Adewale Samson Adeagbo</a> · Powered by <a href="https://hmgconcepts.pages.dev/" target="_blank" rel="noopener">HMG Concepts</a> · <a href="developer.html">About the developer</a>
+    </footer>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/notifications.js"></script>
+<script src="assets/js/voting.js"></script>
+<script src="assets/js/pwa-install.js"></script>
+<script src="assets/js/site-help.js"></script>
+<script src="assets/js/super.js"></script>
+<script src="assets/js/enterprise.js"></script>
+<script src="assets/js/crud.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').then(reg => { Notifications.init(sb, reg); Voting.init(sb); });
+  else { Notifications.init(sb); Voting.init(sb); }
+  PWAInstall.init();
+  if (window.Super) Super.init(sb, window.SCHOOL);
+  if (window.Enterprise) Enterprise.init(sb);
+  if (window.CRUD) CRUD.init(sb);
+</script>
+</body></html>

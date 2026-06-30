@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CBT / Online Exams • School Connect</title>
+<meta name="description" content="17 question types, anti-cheat, instant scoring, certificate code. Complete computer-based testing system for schools.">
+<meta name="theme-color" content="#4f46e5">
+<link rel="canonical" href="https://hmgconcepts.github.io/schoolconnect/cbt.html">
+<meta property="og:title" content="CBT / Online Exams">
+<meta property="og:description" content="17 question types, anti-cheat, instant scoring. Free CBT for schools.">
+<meta property="og:image" content="assets/img/og-cover.svg">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
+<link rel="manifest" href="manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  body { background: var(--gray-100); }
+  .cbt-shell { max-width: 1100px; margin: 0 auto; padding: 100px 24px 60px; }
+  .cbt-hero { text-align: center; padding: 40px 24px; background: white; border-radius: 16px; box-shadow: var(--shadow); margin-bottom: 32px; border: 1px solid var(--gray-200); }
+  .cbt-hero .icon { font-size: 3rem; margin-bottom: 12px; }
+  .cbt-hero h1 { font-size: 2rem; font-weight: 900; color: var(--dark); margin-bottom: 8px; }
+  .cbt-hero p { color: var(--gray-600); max-width: 600px; margin: 0 auto; }
+  .type-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 24px; }
+  .type-card { background: white; padding: 16px; border-radius: 10px; border: 1px solid var(--gray-200); text-align: center; }
+  .type-card .icon { font-size: 1.6rem; }
+  .type-card .name { font-weight: 700; color: var(--dark); font-size: 0.92rem; margin-top: 6px; }
+  .type-card .auto { font-size: 0.75rem; color: var(--success); font-weight: 600; }
+  .feature-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
+  .feature { background: white; padding: 20px; border-radius: 12px; border: 1px solid var(--gray-200); }
+  .feature .icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .feature h4 { font-weight: 800; color: var(--dark); margin-bottom: 4px; }
+  .feature p { font-size: 0.85rem; color: var(--gray-600); line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/img/logo.svg" alt="">
+      <span>School Connect</span>
+    </a>
+    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="academic_setup.html">Settings</a></li>
+      <li><a href="voting.html">Voting</a></li>
+      <li><a href="notifications.html">Notifications</a></li>
+      <li><a href="ecosystem.html">Ecosystem</a></li>
+      <li><a href="guide.html">Guide</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div id="pwa-install-banner" class="pwa-install">
+  <div class="pwa-install-header">
+    <img src="assets/img/logo.svg" alt="" class="pwa-install-icon">
+    <div style="flex:1">
+      <div class="pwa-install-title">📲 Install School Connect</div>
+      <div class="pwa-install-msg">Take exams offline.</div>
+    </div>
+    <button class="modal-close" data-pwa-action="dismiss">×</button>
+  </div>
+  <div class="pwa-install-actions">
+    <button class="btn btn-outline btn-sm" data-pwa-action="never">Not now</button>
+    <button class="btn btn-primary btn-sm" data-pwa-action="install">Install App</button>
+  </div>
+</div>
+
+<div id="toast-container" class="toast-container"></div>
+
+<main class="cbt-shell">
+  <div class="cbt-hero">
+    <div class="icon">💻</div>
+    <h1>CBT / Online Exams</h1>
+    <p>17 question types, anti-cheat suite, instant scoring, certificate codes, export to report cards.</p>
+  </div>
+
+  <h2 style="font-size:1.4rem;font-weight:800;color:var(--dark);margin:32px 0 12px">🧠 17 Question Types — All Auto-Scored</h2>
+  <div class="type-grid">
+    <div class="type-card"><div class="icon">🔘</div><div class="name">MCQ</div><div class="auto">✓ auto</div></div>
+    <div class="type-card"><div class="icon">☑️</div><div class="name">MRQ (partial)</div><div class="auto">✓ auto</div></div>
+    <div class="type-card"><div class="icon">✅</div><div class="name">True / False</div><div class="auto">✓ auto</div></div>
+    <div class="type-card"><div class="icon">📝</div><div class="name">Short Answer</div><div class="auto">✓ auto</div></div>
+    <div class="type-card"><div class="icon">🔢</div><div class="name">Numeric</div><div class="auto">✓ auto</div></div>
+    <div class="type-card"><div class="icon">🔗</div><div class="name">Matching</div><div class="auto">✓ partial</div></div>
+    <div class="type-card"><div class="icon">📊</div><div class="name">Ordering</div><div class="auto">✓ partial</div></div>
+    <div class="type-card"><div class="icon">▫️</div><div class="name">Cloze</div><div class="auto">✓ partial</div></div>
+    <div class="type-card"><div class="icon">📄</div><div class="name">Essay</div><div class="auto">✓ teacher</div></div>
+    <div class="type-card"><div class="icon">🗂️</div><div class="name">Categorization</div><div class="auto">✓ partial</div></div>
+    <div class="type-card"><div class="icon">📈</div><div class="name">Multi-Numeric</div><div class="auto">✓ partial</div></div>
+    <div class="type-card"><div class="icon">🔀</div><div class="name">Assertion-Reason</div><div class="auto">✓ auto</div></div>
+    <div class="type-card"><div class="icon">📖</div><div class="name">Case Study</div><div class="auto">✓ auto</div></div>
+    <div class="type-card"><div class="icon">🖼️</div><div class="name">Image MCQ</div><div class="auto">✓ auto</div></div>
+    <div class="type-card"><div class="icon">⊞</div><div class="name">Matrix / Grid</div><div class="auto">✓ partial</div></div>
+    <div class="type-card"><div class="icon">✏️</div><div class="name">Hot Text</div><div class="auto">✓ partial</div></div>
+    <div class="type-card"><div class="icon">💾</div><div class="name">Code/Algorithm</div><div class="auto">✓ teacher</div></div>
+  </div>
+
+  <h2 style="font-size:1.4rem;font-weight:800;color:var(--dark);margin:40px 0 12px">🔒 Anti-Cheat Suite</h2>
+  <div class="feature-row">
+    <div class="feature"><div class="icon">🔄</div><h4>Tab Switch Detection</h4><p>Flags when student switches tabs.</p></div>
+    <div class="feature"><div class="icon">📋</div><h4>Copy / Paste Block</h4><p>Prevents easy copying.</p></div>
+    <div class="feature"><div class="icon">🖥️</div><h4>Fullscreen Enforcement</h4><p>Flags when fullscreen is exited.</p></div>
+    <div class="feature"><div class="icon">🪟</div><h4>Window Blur</h4><p>Detects focus loss.</p></div>
+    <div class="feature"><div class="icon">💧</div><h4>Watermark</h4><p>Student identity overlay.</p></div>
+    <div class="feature"><div class="icon">⚠️</div><h4>Auto-Submit</h4><p>Configurable violation limit (0-10).</p></div>
+  </div>
+
+  <h2 style="font-size:1.4rem;font-weight:800;color:var(--dark);margin:40px 0 12px">⏱️ Exam Experience</h2>
+  <div class="feature-row">
+    <div class="feature"><div class="icon">⏰</div><h4>Live Countdown</h4><p>Color warnings as time runs out.</p></div>
+    <div class="feature"><div class="icon">🗺️</div><h4>Navigator Grid</h4><p>Visual grid: answered/unanswered/flagged.</p></div>
+    <div class="feature"><div class="icon">🚩</div><h4>Flag for Review</h4><p>Mark uncertain questions to revisit.</p></div>
+    <div class="feature"><div class="icon">⌨️</div><h4>Keyboard Shortcuts</h4><p>JAMB-style: A-D, N, P, F, S.</p></div>
+    <div class="feature"><div class="icon">💾</div><h4>Auto-Save</h4><p>Drafts saved every 10 seconds.</p></div>
+    <div class="feature"><div class="icon">🧮</div><h4>Scientific Calculator</h4><p>Trig, powers, %, memory.</p></div>
+    <div class="feature"><div class="icon">🔢</div><h4>Math Keyboard</h4><p>Greek letters, √, ∫, chemistry fragments.</p></div>
+    <div class="feature"><div class="icon">🔊</div><h4>Read Aloud</h4><p>Speech synthesis reads questions.</p></div>
+  </div>
+
+  <div style="background:white;padding:32px;border-radius:16px;margin-top:40px;border-left:6px solid var(--primary)">
+    <h2 style="font-size:1.3rem;font-weight:800;color:var(--dark);margin-bottom:12px">📊 Auto-Scoring & Results</h2>
+    <p style="color:var(--gray-700);line-height:1.7">Instant scoring with partial credit across all 17 types. Each submission gets a verifiable certificate code. Results are exportable as CSV and can flow directly into the report-card table. Includes answer review with explanations.</p>
+  </div>
+
+  <p style="text-align:center;margin-top:40px">
+    <button onclick="showEnableGuide()" class="btn btn-primary btn-lg">🚀 Enable CBT in your school</button>
+  </p>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid" style="grid-template-columns:1fr 1fr 1fr">
+    <div>
+      <h5>🎓 School Connect</h5>
+      <p style="color:var(--gray-400);font-size:0.9rem">A no-code generator that builds complete school management platforms. Free forever.</p>
+    </div>
+    <div>
+      <h5>Demo</h5>
+      <a href="voting.html">Voting</a>
+      <a href="notifications.html">Notifications</a>
+      <a href="install.html">PWA Install</a>
+    </div>
+    <div>
+      <h5>Ecosystem</h5>
+      <a href="https://hmgconcepts.pages.dev/" target="_blank" rel="noopener">HMG Concepts</a>
+      <a href="ecosystem.html">Explore</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 HMG Concepts · <a href="https://hmgconcepts.github.io/schoolconnect/ecosystem.html" target="_blank" rel="noopener" style="color:var(--gray-400)">hmgconcepts.pages.dev</a></div>
+</footer>
+
+<script src="assets/js/notifications.js"></script>
+<script src="assets/js/pwa-install.js"></script>
+<script>
+  if (typeof PWAInstall !== 'undefined') PWAInstall.init();
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+  function toast(msg, type='info', ms=3500) {
+    const c = document.getElementById('toast-container');
+    if (!c) return;
+    const t = document.createElement('div');
+    t.className = 'toast toast-' + type;
+    t.innerHTML = '<div class="toast-msg">' + msg + '</div>';
+    c.appendChild(t);
+    setTimeout(() => { t.style.animation = 'slideOut 0.3s ease forwards'; setTimeout(() => t.remove(), 300); }, ms);
+  }
+  
+  function openModal(title, body, footer) {
+    let backdrop = document.getElementById('modal-backdrop');
+    if (!backdrop) {
+      document.body.insertAdjacentHTML('beforeend', '<div id="modal-backdrop" class="modal-backdrop" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="modal-header"><h2 id="modal-title"></h2><button class="modal-close" onclick="closeModal()">×</button></div><div id="modal-body" class="modal-body"></div><div id="modal-footer" class="modal-footer"></div></div></div><style>.modal-backdrop{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:10000;align-items:center;justify-content:center;padding:20px}.modal{background:white;border-radius:16px;max-width:600px;width:100%;max-height:90vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3)}.modal-header{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--gray-200)}.modal-header h2{margin:0;font-size:1.25rem;font-weight:800;color:var(--dark)}.modal-close{background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--gray-500);padding:4px 8px}.modal-body{padding:24px}.modal-footer{padding:16px 24px;border-top:1px solid var(--gray-200);display:flex;gap:12px;justify-content:flex-end}</style>');
+      backdrop = document.getElementById('modal-backdrop');
+    }
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-body').innerHTML = body;
+    document.getElementById('modal-footer').innerHTML = footer || '';
+    backdrop.style.display = 'flex';
+  }
+  
+  function closeModal() {
+    const backdrop = document.getElementById('modal-backdrop');
+    if (backdrop) backdrop.style.display = 'none';
+  }
+  
+  function showEnableGuide() {
+    openModal('🚀 Enable CBT in Your School', \`
+      <div style="text-align:left">
+        <h4>Step 1: Setup Database Tables</h4>
+        <p>Go to your Supabase SQL Editor and run the CBT schema:</p>
+        <pre style="background:#f1f5f9;padding:12px;border-radius:8px;font-size:12px;overflow-x:auto">CREATE TABLE IF NOT EXISTS cbt_exams (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  title TEXT NOT NULL, code TEXT UNIQUE,
+  subject TEXT, class TEXT,
+  duration INTEGER DEFAULT 45,
+  is_open BOOLEAN DEFAULT true,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS cbt_questions (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  exam_id UUID REFERENCES cbt_exams(id),
+  question TEXT NOT NULL,
+  options JSONB, answer TEXT,
+  marks REAL DEFAULT 1,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS cbt_results (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  exam_id UUID REFERENCES cbt_exams(id),
+  student_name TEXT, score REAL, total REAL,
+  submitted_at TIMESTAMPTZ DEFAULT NOW()
+);</pre>
+        <h4 style="margin-top:16px">Step 2: Configure Supabase</h4>
+        <p>Set SUPABASE_URL and SUPABASE_ANON_KEY in <code>assets/js/config.js</code></p>
+        <h4 style="margin-top:16px">Step 3: Use the Generator</h4>
+        <p>Visit the School Connect generator to create a site with the full CBT management module.</p>
+      </div>
+    \`, '<button class="btn btn-primary" onclick="closeModal()">Got it!</button>');
+  }
+</script>
+</body>
+</html>
